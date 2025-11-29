@@ -37,3 +37,49 @@ const names = users
 
 console.log(names);
 ```
+
+### Difference between null and undefined
+
+What will be logged in first example and in second example?
+
+```js
+let var1;
+console.log(var1);
+console.log(typeof var1);
+
+let var2 = null;
+console.log(var2);
+console.log(typeof var2);
+```
+
+### Hoisting
+
+What will be console.logged here
+
+```js
+// Question 1
+console.log(foo);
+foo = 1;
+
+// question 2
+console.log(foo);
+var foo = 2;
+
+// question 3
+foo = 3;
+console.log(foo);
+var foo;
+```
+
+### Closures
+
+```js
+function counter() {
+  let count = 0;
+
+  return {
+    increment: () => count++,
+    getValue: () => count,
+  };
+}
+```
