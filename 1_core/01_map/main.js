@@ -1,14 +1,6 @@
-# JavaScript coding interview
-
-## Core concepts
-
-### Mapping users to get username
-
-- Write code to get array of names from given array of users
-- Get back only active users
-- Sort users by age descending
-
-```js
+// 1. Write code to get array of names from given array of users
+// 2. Get back only active users
+// 3. Sort users by age descending
 const users = [
   {
     id: 1,
@@ -36,4 +28,3 @@ const names = users
   .map(u => u.name);
 
 console.log(names);
-```
