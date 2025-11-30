@@ -242,3 +242,14 @@ const shuffle = items =>
     .sort((a, b) => (a.sort < b.sort ? -1 : 1))
     .map(i => i.item);
 ```
+
+### Min occurence in a list
+
+```js
+const findMinCount = list => {
+  const min = Math.min(...arr);
+  const mins = arr.filter(n => n === min);
+
+  return mins.length;
+};
+```
