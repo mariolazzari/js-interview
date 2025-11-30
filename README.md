@@ -253,3 +253,85 @@ const findMinCount = list => {
   return mins.length;
 };
 ```
+
+### This
+
+What will be logged here?
+
+```js
+// Task 1
+function getItem() {
+  console.log(this);
+}
+
+getItem();
+
+// Task 2
+const item = {
+  title: "Ball",
+  getItem() {
+    console.log("this", this);
+  },
+};
+
+item.getItem();
+
+// Task 3
+class Item {
+  title = "Ball";
+  getItem() {
+    function someFn() {
+      console.log("this", this);
+    }
+    someFn();
+  }
+}
+
+const itemObj = new Item();
+itemObj.getItem();
+```
+
+### Classes
+
+- Design a class for employee which takes id and name in during construction of object and has a salary property
+- Design a class for manager which is employee and can have department property
+
+```js
+class Employee {
+  constructor(id, name) {
+    this.id = id;
+    this.name = name;
+  }
+
+  setSalary(salary) {
+    this.salary = salary;
+  }
+
+  getSalary() {
+    return salary;
+  }
+}
+
+class Manager extends Employee {
+  constructor(id, name) {
+    super(id, name);
+  }
+
+  setDepartment(name) {
+    this.department = name;
+  }
+
+  getDepartment() {
+    return this.department;
+  }
+}
+
+const mario = new Employee(1, "Mario");
+mario.setSalary(100000);
+console.log(mario);
+
+const mng = new Manager(1, "Manager");
+mng.setSalary(200000);
+mng.setDepartment("IT");
+console.log(mng);
+```
