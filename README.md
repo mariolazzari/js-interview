@@ -233,6 +233,12 @@ console.log(nums2);
 
 ### Shuffle
 
-```js
+Write a function which implements shuffle
 
+```js
+const shuffle = items =>
+  items
+    .map(item => ({ sort: Math.random(), item }))
+    .sort((a, b) => (a.sort < b.sort ? -1 : 1))
+    .map(i => i.item);
 ```
