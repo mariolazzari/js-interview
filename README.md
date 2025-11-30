@@ -335,3 +335,115 @@ mng.setSalary(200000);
 mng.setDepartment("IT");
 console.log(mng);
 ```
+
+### Prototypes
+
+Design the same classes by using only Javascript prototypes
+
+```js
+// Design the same classes by using only Javascript prototypes
+const Employee = function (id, name) {
+  this.id = id;
+  this.name = name;
+};
+
+Employee.prototype.setSalary = function (salary) {
+  this.salary = salary;
+};
+
+Employee.prototype.getSalary = function () {
+  return this.salary;
+};
+
+// Manager constructor function
+function Manager(id, name) {
+  // Call Employee constructor with 'this'
+  Employee.call(this, id, name);
+}
+
+// Inherit from Employee
+Manager.prototype = Object.create(Employee.prototype);
+Manager.prototype.constructor = Manager;
+
+// Add Manager-specific methods
+Manager.prototype.setDepartment = function (name) {
+  this.department = name;
+};
+
+Manager.prototype.getDepartment = function () {
+  return this.department;
+};
+```
+
+### Modules
+
+- Create a es6 module with function getName, getSurname and default export getFullname.
+- Create the same with commonJS module
+
+```js
+export const getName = name => {
+  return name;
+};
+
+export const getSurname = surname => {
+  return surname;
+};
+
+export const getFullname = (name, surname) => {
+  return `${name} ${surname}`;
+};
+
+export default getFullname;
+```
+
+### Debounce
+
+```js
+const debounce = (fn, ms) => {
+  let timeout;
+
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      fn(...args);
+    }, ms);
+  };
+};
+
+// Usage
+const debouncedLog = debounce(name => console.log("Ciao " + name), 500);
+
+// Call it multiple times
+debouncedLog("Mario");
+debouncedLog("Mario");
+debouncedLog("Mario"); // Only this call will log "ciao" after 500ms
+```
+
+### Throttling
+
+```js
+const throttle = (fn, ms) => {
+  let isWaiting = false;
+
+  return (...args) => {
+    if (isWaiting) {
+      return;
+    }
+
+    fn(...args);
+    isWaiting = true;
+
+    setTimeout(() => {
+      isWaiting = false;
+    }, ms);
+  };
+};
+
+// Usage
+const throttledLog = throttle(name => console.log("Ciao " + name), 500);
+// Call it multiple times
+throttledLog("Mario");
+throttledLog("Luigi");
+throttledLog("Giovanni");
+// Only the first call logs immediately, then the next allowed after 500ms
+```
