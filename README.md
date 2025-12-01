@@ -545,5 +545,60 @@ fetch(url)
 - What problem callbacks solve?
 
 ```js
+const asyncFn = cb => {
+  setTimeout(() => {
+    cb("done");
+  }, 1000);
+};
 
+asyncFn(msg => {
+  console.log("callback", msg);
+});
 ```
+
+### Parallel async arrays
+
+Execute the given list of asynchronous functions in parallel and return the results as an array to the callback
+
+```js
+asyncParallel(asyncFuncs, cb => {
+  const results = new Array(asyncFuncs.length);
+  let count = 0;
+
+  asyncFuncs.forEach((fn, idx) => {
+    fn(val => {
+      result[idx] = val;
+      count++;
+
+      if (count === asyncFuncs.length) {
+        cb(results);
+      }
+    });
+  });
+  console.log(result); // 1, 2, 3 (prints results of each asynchronous function in order)
+});
+```
+
+### Callback to promise
+
+Create a promise function to be able to use callback function via promise approach
+
+```js
+const asyncFunc = callback => {
+  setTimeout(() => {
+    callback(1);
+  }, 3000);
+};
+
+const promisify = () => {
+  return new Promise(res => {
+    asyncFunc(data => {
+      res(data);
+    });
+  });
+};
+
+promisify().then(console.log);
+```
+
+###
