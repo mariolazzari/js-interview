@@ -447,3 +447,103 @@ throttledLog("Luigi");
 throttledLog("Giovanni");
 // Only the first call logs immediately, then the next allowed after 500ms
 ```
+
+## Working with DOM
+
+### Highlight all words over 8 chars
+
+```js
+const p = document.querySelector("p");
+p.innerHTML = p.innerHTML
+  .split(" ")
+  .map(word =>
+    word.length > 8
+      ? `<span style="background-color:yellow; font-weight:bold; padding:2px 4px;">${word}</span>`
+      : word
+  )
+  .join(" ");
+```
+
+### Add a link
+
+Add a link back to the source of the text after the paragraph tag
+
+```js
+const link = document.createElement("a");
+link.href = "https://mariolazzari.it";
+link.innerText = "Mario Lazzari";
+link.target = "_blank";
+
+document.body.appendChild(link);
+```
+
+### Split sentence to new line
+
+- Split each new sentence to a separate line in the paragraph text.
+- A sentence can be assumed to be a string of text terminated with a period (.)
+
+```js
+const p = document.querySelector("p");
+p.innerHTML = p.innerHTML.split(".").join(".</p><p>") + "</p>";
+```
+
+### Event delegation
+
+```js
+const app = document.querySelector(".todo-app");
+app.addEventListener("click", e => {
+  if (e.target && e.target.classList.contains("item")) {
+    window.alert("click: " + e.target.innerText);
+  }
+});
+```
+
+## Async JavaScript
+
+### Xml Http request
+
+Write an example of fetching data with XMLHttpRequest.
+
+```js
+// Write an example of fetching data with XMLHttpRequest.
+const url = "https://api.github.com/users/mariolazzari/repos";
+const xhr = new XMLHttpRequest();
+
+// Initialize a GET request
+xhr.open("GET", url);
+// Send the request
+xhr.send();
+// Handle the response
+xhr.onload = function () {
+  if (xhr.status >= 200 && xhr.status < 300) {
+    // Successful response
+    const data = JSON.parse(xhr.responseText);
+    console.log("Repositories:", data);
+  } else {
+    // Handle errors
+    console.error("Error fetching data:", xhr.status, xhr.statusText);
+  }
+};
+// handle network errors
+xhr.onerror = function () {
+  console.error("Network Error");
+};
+```
+
+### Fetch API
+
+```js
+fetch(url)
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(ex => console.error(ex));
+```
+
+### Basic callback
+
+- Write an asynchronous function which executes callback after finishing it's asynchronous task
+- What problem callbacks solve?
+
+```js
+
+```
