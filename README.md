@@ -867,3 +867,56 @@ const fib = n => {
   return fib(n - 1) + fib(n - 2);
 };
 ```
+
+### Anagrams
+
+```js
+const isAnagram = (str1, str2) => {
+  if (str1.length !== str2.length) {
+    return false;
+  }
+
+  const lower1 = str1.toLowerString();
+  const lower2 = str2.toLowerString();
+  if (lower1 === lower2) {
+    return false;
+  }
+
+  const sorted1 = lower1.split("").sort();
+  const sorted2 = lower2.split("").sort();
+
+  return sorted1 === sorted2;
+};
+```
+
+### Finding vowels
+
+```js
+const vowels = ["a", "e", "i", "o", "u"];
+
+const findVowels = str => {
+  let count = 0;
+
+  for (const word of str) {
+    if (vowels.includes(word)) {
+      count++;
+    }
+  }
+
+  return count;
+};
+
+const findVowels2 = str =>
+  str
+    .toLowerCase()
+    .split("")
+    .reduce((acc, char) => (vowels.includes(char) ? acc + 1 : acc), 0);
+```
+
+## Tasks
+
+### Title case
+
+```js
+
+```
