@@ -918,5 +918,45 @@ const findVowels2 = str =>
 ### Title case
 
 ```js
+const capitalize = str =>
+  str
+    .split(" ")
+    .map(s => `${s.slice(0, 1).toUpperCase()}${s.slice(1)}`)
+    .join(" ");
+```
 
+### 24h
+
+```js
+function convertTo24HrsFormat(timeText) {
+  // Extract parts: time (HH:MM) and meridian (AM/PM)
+  let [time, modifier] = timeText.split(/(AM|PM)/i).filter(Boolean);
+  let [hours, minutes] = time.split(":");
+
+  hours = parseInt(hours, 10);
+  minutes = minutes.padStart(2, "0");
+
+  if (modifier.toUpperCase() === "AM") {
+    if (hours === 12) hours = 0; // 12AM → 00
+  } else {
+    if (hours !== 12) hours += 12; // PM → add 12 unless it's 12PM
+  }
+
+  return `${hours.toString().padStart(2, "0")}:${minutes}`;
+}
+```
+
+### Mapping data
+
+```js
+const result = bulkConfig.flatMap((config, index) => {
+  const { config_key } = config.dataValues;
+  const { location_key, autoassign } = loc[index];
+
+  return location_key.map(key => ({
+    config_key,
+    location_key: key,
+    autoassign,
+  }));
+});
 ```
