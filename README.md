@@ -960,3 +960,18 @@ const result = bulkConfig.flatMap((config, index) => {
   }));
 });
 ```
+
+### Replacing URL params
+
+```js
+const replaceParamsInUrl = (url, params) => {
+  params.forEach(p => {
+    const from = p["from"];
+    const to = p["to"];
+
+    url = url.replace(`:${from}`, to);
+  });
+
+  return url;
+};
+```
