@@ -975,3 +975,17 @@ const replaceParamsInUrl = (url, params) => {
   return url;
 };
 ```
+
+### Validation messages
+
+```js
+const messages = Object.values(backendErrors).flatMap(field =>
+  field.errors.map(e => e.message)
+);
+```
+
+### Nested list
+
+```js
+
+```
